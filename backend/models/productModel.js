@@ -6,13 +6,13 @@ const mongoose=require("mongoose");
 const productSchema=new mongoose.Schema({
     name:{
         type:String,
-        // required:true,
+        required:true,
        trim:true
        
     },
     description:{
         type:String,
-    //    required:true,
+       required:true,
     },
     price:{
         type:Number,
