@@ -3,6 +3,7 @@ const Product=require("../models/productModel");
 const ErrorHander = require("../util/errorhandler");
 
 const catchAyncErros=require("../middleware/catchasyncerros");
+const Apifeauters = require("../util/apifeatures");
 
 
 //create product admin
@@ -20,7 +21,8 @@ exports.createProduct=catchAyncErros(async(req,res,next)=>{
 exports.getAllProducts=catchAyncErros( async (req,res)=>{
     
     // finding all prodcts
-    const  products=  await Product.find();
+   const apifeatures= new Apifeauters(Product.find(),req.query).search();
+    const  products=  await apifeatures.query;
     res.status(200).json({
         success:true,
         products
