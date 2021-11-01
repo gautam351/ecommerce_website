@@ -20,12 +20,19 @@ exports.createProduct=catchAyncErros(async(req,res,next)=>{
 // get all products
 exports.getAllProducts=catchAyncErros( async (req,res)=>{
     
+ 
+
+
     // finding all prodcts
-   const apifeatures= new Apifeauters(Product.find(),req.query).search();
+   const apifeatures= new Apifeauters(Product.find(),req.query)
+   .search()
+   .filter()
+   .pagination(10);
     const  products=  await apifeatures.query;
     res.status(200).json({
         success:true,
         products
+        
     })
     res.status(200).json({message:"Route is working"})
 }
@@ -34,6 +41,11 @@ exports.getAllProducts=catchAyncErros( async (req,res)=>{
 // Get product details (single proudct)
 exports.getSingleProduct=catchAyncErros(
     async(req,res,next)=>{
+     
+           // finding total numbers of products in the doc
+    const Productcount=  await Product.countDocuments();
+
+
         const product =await Product.findById(req.params.id);
         if(!product){
             // next is nothing but a callback function  
@@ -42,7 +54,8 @@ exports.getSingleProduct=catchAyncErros(
     
         res.status(201).json({
             success:true,
-            product
+            product,
+            Productcount
         })
     }
     
@@ -63,6 +76,7 @@ if(!product){
 res.status(200).json({
     success:true,
     product
+    
 })
 
 
