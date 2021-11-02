@@ -1,6 +1,6 @@
 const express=require('express');
 const bodyParser = require("body-parser")
-
+const cookieParser=require("cookie-parser");
 const app=express();
 const errorMiddleWare=require("./middleware/error");
 // Route imports
@@ -8,7 +8,7 @@ const product=require("./routes/productRoute");
 const User=require("./routes/userRouted");
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cookieParser());
 
 
 //isse api request padegi /api/v1/all the routes present in productRoute file

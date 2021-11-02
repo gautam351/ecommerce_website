@@ -63,11 +63,11 @@ userSchema.pre("save",async function(next){
 
 
 // JWT TOKEN
-const JWT_SECRET="jkbkdjbkdjbouahfebfafafakfbaifaafkajnaf";
+const JWT_SECRET=process.env.JWT_SECRET;
 const JWT_EXPIRE=5;
 userSchema.methods.getJWTToken = function () {
-  return jwt.sign({ id: this._id },JWT_SECRET, {
-    expiresIn: JWT_EXPIRE,
+  return jwt.sign({ id: this._id },process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRE,
   });
 };
 
