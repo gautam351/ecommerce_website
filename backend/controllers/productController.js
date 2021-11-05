@@ -8,6 +8,8 @@ const Apifeauters = require("../util/apifeatures");
 
 //create product admin
 exports.createProduct=catchAyncErros(async(req,res,next)=>{
+    
+    req.body.user=req.body.id;
     const product =await Product.create(req.body);
     res.status(201).json({
         success:true,

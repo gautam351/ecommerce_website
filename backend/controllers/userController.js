@@ -43,3 +43,58 @@ exports.loginUser = catchAyncErros(async (req, res, next) => {
 
   sendToken(user,200,res);
 });
+
+
+
+// forget PAssword
+exports.forgetPassword=catchAyncErros(
+  async (req,res,next)=>{
+    
+    // finding user
+    const user= await User.findOne({email:req.body.email});
+    if(!user){
+      return next( new ErrorHander("User not found",404))
+    }
+    
+
+    // get reset Token
+    const resetToken= user.getResetPasswordToken();
+
+    // by calling getResetPasswordToken() we added values of the reset token 
+    // and expiry to the user field but havent saved yet
+    await user.save({validateBeforeSave:false});
+    
+
+    // now creating reset passwrd url
+    const resetPasswordUrl= `${req.protocol}://${req.get("host")}/api/v1/password/reset/${resetToken}`;
+
+    const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
+    
+
+    // now sending mail and catiching error
+
+    try {
+      await sendEmail({
+        email: user.email,
+        subject: `Ecommerce Password Recovery`,
+        message,
+      });
+  
+      res.status(200).json({
+        success: true,
+        message: `Email sent to ${user.email} successfully`,
+      });
+    } catch (error) {
+
+      // if error occur db me jo token saved hai unhe undefined kro
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpire = undefined;
+  
+      await user.save({ validateBeforeSave: false });
+  
+      return next(new ErrorHander(error.message, 500));
+    }
+      
+
+  }
+)
