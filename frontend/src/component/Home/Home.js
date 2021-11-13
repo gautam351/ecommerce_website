@@ -1,6 +1,15 @@
 import React from 'react'
 import { CgMouse } from 'react-icons/cg'
 import "../Home/Home.css"
+ import Product from "./Product"
+
+const product={
+    name:"blue shirt",
+    image:[{url:"https://mern-stack-ecommerce-store.herokuapp.com/static/media/playstore.82b48319.png"}],
+    price:"$3000",
+    _id:"Praveen"
+}
+
 function Home() {
     return (
         <>
@@ -17,7 +26,15 @@ function Home() {
           <h2 className="homeHeading">Featured Products</h2>
 
    <div className="container" id="container">
-  yello
+   <Product product={product} />
+   <Product product={product} />
+   <Product product={product} />
+   <Product product={product} />
+   <Product product={product} />
+   <Product product={product} />
+   <Product product={product} />
+   <Product product={product} />
+
    </div>
  </>   )
 }
