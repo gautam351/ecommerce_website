@@ -16,15 +16,19 @@ exports.createProduct = catchAyncErros(async (req, res, next) => {
 
 // get all products
 exports.getAllProducts = catchAyncErros(async (req, res) => {
+  
+  const productCount=await Product.countDocuments();
   // finding all prodcts
   const apifeatures = new Apifeauters(Product.find(), req.query)
     .search()
     .filter()
-    .pagination(10);
+    .pagination(8);
   const products = await apifeatures.query;
   res.status(200).json({
     success: true,
     products,
+    productCount,
+    
   });
   res.status(200).json({ message: "Route is working" });
 });

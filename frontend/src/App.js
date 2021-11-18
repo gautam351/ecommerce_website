@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import Footer from './component/layout/Header/Footer/Footer';
 
 import Home from "./component/Home/Home"
+import Loader from './component/layout/Loader/loader';
 
 function App() {
 
@@ -34,6 +35,7 @@ useEffect(() => {
   <Header/>
   <Routes>
     <Route path="/" element={<Home/>} />
+    <Route path="/loading" element={<Loader/>} />
 
   
   </Routes>

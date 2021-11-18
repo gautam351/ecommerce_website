@@ -12,7 +12,7 @@ import {Link} from "react-router-dom"
 function Product(props) {
 
   const options = {
-            value: 4,
+            value: props.product?.rating,
             readOnly: true,
             precision: 0.5,
             edit:false
@@ -24,15 +24,15 @@ function Product(props) {
     <div>
          <Link className="productCard" to={props.product?._id}>
 
-         <img src={props.product?.image[0]?.url} alt={props.product?.name} />
+         <img src={props.product?.images[0]?.url} alt={props.product?.name} />
          <p>{props.product?.name}</p>
         <div>
 
         <ReactStarts  {...options}  />
           {" "}
           <span className="productCardSpan">
-            {" "}
-            ( 256 Reviews)
+            ({props.product?.numofReviews}
+            Reviews)
           </span>
         </div>
         <span>{`₹${props.product?.price}`}</span>
