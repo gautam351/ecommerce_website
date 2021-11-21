@@ -11,7 +11,7 @@ import Footer from './component/layout/Header/Footer/Footer';
 
 import Home from "./component/Home/Home"
 import Loader from './component/layout/Loader/loader';
-
+import ProductDetails from './component/Product/ProductDetails';
 function App() {
 
   
@@ -36,7 +36,7 @@ useEffect(() => {
   <Routes>
     <Route path="/" element={<Home/>} />
     <Route path="/loading" element={<Loader/>} />
-
+    <Route path="/product/:id" element={<ProductDetails/>} />
   
   </Routes>
   <Footer />

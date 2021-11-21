@@ -22,7 +22,7 @@ function Product(props) {
 
   return (
     <div>
-         <Link className="productCard" to={props.product?._id}>
+         <Link className="productCard" to={`/product/${props.product?._id}`}>
 
          <img src={props.product?.images[0]?.url} alt={props.product?.name} />
          <p>{props.product?.name}</p>

@@ -16,7 +16,7 @@ exports.createProduct = catchAyncErros(async (req, res, next) => {
 
 // get all products
 exports.getAllProducts = catchAyncErros(async (req, res) => {
-  
+  // return next(new ErrorHander("lol alert",500));
   const productCount=await Product.countDocuments();
   // finding all prodcts
   const apifeatures = new Apifeauters(Product.find(), req.query)
