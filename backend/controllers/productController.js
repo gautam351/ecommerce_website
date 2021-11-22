@@ -23,11 +23,13 @@ exports.getAllProducts = catchAyncErros(async (req, res) => {
     .search()
     .filter()
     .pagination(8);
+    const resultPerPage=8;
   const products = await apifeatures.query;
   res.status(200).json({
     success: true,
     products,
     productCount,
+    resultPerPage,
     
   });
   res.status(200).json({ message: "Route is working" });

@@ -10,8 +10,10 @@ import { useEffect } from 'react';
 import Footer from './component/layout/Header/Footer/Footer';
 
 import Home from "./component/Home/Home"
-import Loader from './component/layout/Loader/loader';
+import Loader from './component/layout/Loader/Loader';
 import ProductDetails from './component/Product/ProductDetails';
+import Products from './component/Product/Products';
+import Search from './component/Product/Search';
 function App() {
 
   
@@ -37,7 +39,10 @@ useEffect(() => {
     <Route path="/" element={<Home/>} />
     <Route path="/loading" element={<Loader/>} />
     <Route path="/product/:id" element={<ProductDetails/>} />
-  
+    <Route path="/products" element={<Products/>} />
+    <Route path="/search" element={<Search/>} />
+    <Route path="/products/:keyword" element={<Products/>} />
+
   </Routes>
   <Footer />
   </Router>
