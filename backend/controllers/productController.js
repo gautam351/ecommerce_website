@@ -22,8 +22,8 @@ exports.getAllProducts = catchAyncErros(async (req, res) => {
   const apifeatures = new Apifeauters(Product.find(), req.query)
     .search()
     .filter()
-    .pagination(8);
-    const resultPerPage=8;
+    .pagination(16);
+    const resultPerPage=16;
   const products = await apifeatures.query;
   res.status(200).json({
     success: true,

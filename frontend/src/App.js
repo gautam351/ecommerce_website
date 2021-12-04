@@ -14,6 +14,7 @@ import Loader from './component/layout/Loader/Loader';
 import ProductDetails from './component/Product/ProductDetails';
 import Products from './component/Product/Products';
 import Search from './component/Product/Search';
+import LoginSignup from './component/User/LoginSignup';
 function App() {
 
   
@@ -42,6 +43,7 @@ useEffect(() => {
     <Route path="/products" element={<Products/>} />
     <Route path="/search" element={<Search/>} />
     <Route path="/products/:keyword" element={<Products/>} />
+    <Route path="/login" element={<LoginSignup/>}/>
 
   </Routes>
   <Footer />
