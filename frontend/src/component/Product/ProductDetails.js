@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect,useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import "./ProductDetails.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,7 +12,18 @@ import Loader from "../layout/Loader/Loader"
 function ProductDetails(props) {
   const { id } = useParams();
   let arr=[1,2,3,4,5];
- 
+ const [quantity, setquantity] = useState(1)
+const increaseq=(e)=>{
+  e.preventDefault();
+ if(product.stock>quantity) setquantity(quantity+1);
+
+}
+const decreaseq=(e)=>{
+  e.preventDefault();
+  if(quantity>1) setquantity(quantity-1);
+
+}
+
   const dispatch = useDispatch();
   const { product, loading, error } = useSelector(
     (state) => state.productDetails
@@ -64,9 +75,9 @@ function ProductDetails(props) {
             <h1>{`₹${product.price}`}</h1>
             <div className="detailsBlock-3-1">
               <div className="detailsBlock-3-1-1">
-                <button>-</button>
-                <input readOnly type="number" />
-                <button>+</button>
+                <button  onClick={e=>decreaseq(e)}>-</button>
+                <input readOnly value={quantity} type="number" />
+                <button onClick={e=>increaseq(e)}  >+</button>
               </div>
               <button
                 disabled={product.stock < 1 ? true : false}
