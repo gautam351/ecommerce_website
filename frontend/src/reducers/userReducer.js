@@ -138,7 +138,7 @@ export const forgetPasswordReducer = (state = {}, action) => {
     
       return {
         ...state,
-        loding: true,
+        loading: true,
         error:null,
       };
 
@@ -146,7 +146,7 @@ export const forgetPasswordReducer = (state = {}, action) => {
     case FORGET_PASSWORD_SUCCESS:
       return {
         ...state,
-        loding: false,
+        loading: false,
         message: action.payload,
       };
 

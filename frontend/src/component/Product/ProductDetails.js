@@ -7,10 +7,12 @@ import { useParams } from "react-router-dom";
 import MetaData from "../layout/MetaData";
 import ReactStarts from "react-rating-stars-component";
 import Review  from "./Review";
-
+import { addItemsToCart } from "../../actions/cartActions";
 import Loader from "../layout/Loader/Loader"
+import { useAlert } from "react-alert";
 function ProductDetails(props) {
   const { id } = useParams();
+  const alert=useAlert();
   let arr=[1,2,3,4,5];
  const [quantity, setquantity] = useState(1)
 const increaseq=(e)=>{
@@ -37,6 +39,12 @@ const decreaseq=(e)=>{
     readOnly: true,
     precision: 0.5,
   };
+
+const addToCartHandler=()=>{
+  dispatch(addItemsToCart(id,quantity));
+  alert.success("item Added To Cart");
+}
+
   return (
     <>
       {loading?<Loader /> :
@@ -81,7 +89,7 @@ const decreaseq=(e)=>{
               </div>
               <button
                 disabled={product.stock < 1 ? true : false}
-                // onClick={addToCartHandler}
+                onClick={addToCartHandler}
               >
                 Add to Cart
               </button>

@@ -8,7 +8,7 @@ import { clearErrors, forgetPassword } from '../../actions/userActions';
 import Loader from '../layout/Loader/Loader';
 function ForgetPassword() {
 
-    const { error, message, loding } = useSelector(
+    const { error, message, loading } = useSelector(
         (state) => state.forgetPassword
       );
 
@@ -40,7 +40,7 @@ const dispatch = useDispatch();
 
     return (
         <>
-        {loding?(<Loader/>):
+        {loading?(<Loader/>):
         <>
          (<MetaData title="Forgot Password" />
           <div className="forgotPasswordContainer">

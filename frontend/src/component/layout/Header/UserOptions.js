@@ -19,7 +19,7 @@ const  dispatch = useDispatch();
 const alert=useAlert();
 // const { cartItems } = useSelector((state) => state.cart);
 const options = [
-    { icon: <ListAltIcon />, name: "Orders", func: orders },
+    { icon: <ListAltIcon />, name: "Cart", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
     // {
     //   icon: (
@@ -46,7 +46,7 @@ const options = [
   }
   
   function orders() {
-    history("/orders");
+    history("/Cart");
   }
   function account() {
     history("/account");
