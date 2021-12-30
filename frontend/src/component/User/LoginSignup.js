@@ -4,14 +4,16 @@ import Loader from "../layout/Loader/Loader";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import PersonIcon from "@mui/icons-material/Person";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login ,register} from "../../actions/userActions";
 import { useAlert } from "react-alert";
+import { red } from "@material-ui/core/colors";
 
 function LoginSignup() {
   const dispatch = useDispatch();
   const alert = useAlert();
+  const location=useLocation();
   const { error, loading, isAuthenticated } = useSelector(
     (state) => state.user
   );
@@ -84,7 +86,7 @@ function LoginSignup() {
       setuser({ ...user, [e.target.name]: e.target.value });
     }
   };
-
+const redirect= location.search?location.search.split("=")[1]:"/account";
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -92,9 +94,9 @@ function LoginSignup() {
     }
 
     if (isAuthenticated) {
-      navigate("/account");
+      navigate(redirect);
     }
-  }, [dispatch, error, alert, navigate, isAuthenticated]);
+  }, [dispatch, error, alert, navigate, isAuthenticated,redirect]);
 
   return (
     <>

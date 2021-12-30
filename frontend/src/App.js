@@ -24,6 +24,7 @@ import UpdateProfile from './component/User/UpdateProfile';
 import UpdatePassword from './component/User/UpdatePassword';
 import ForgetPassword from './component/User/ForgetPassword';
 import Cart from './component/Cart/Cart';
+import Shipping from './component/Cart/Shipping';
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
@@ -61,6 +62,7 @@ useEffect(() => {
     <Route path= "/password/update" element={<UpdatePassword user={user} isAuthenticated={isAuthenticated} /> }  />
     <Route path= "/password/forgot" element={<ForgetPassword  /> }  />
     <Route path= "/cart" element={<Cart /> }  />
+    <Route path= "/login/shipping" element={<Shipping   isAuthenticated={isAuthenticated} /> }  />
 
   </Routes>
   <Footer />
